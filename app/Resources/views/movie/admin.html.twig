@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ŚF - Panel administratora{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/boostrap.min.css') }}"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="header">
+            <div id="menu">
+                <ul>
+                    <li><a href={{ path('createMovie') }}>Dodaj nowy film</a></li>
+                    <li><a href={{ path('updateMovieList') }}>Edytuj film</a></li>
+                    <li><a href={{ path('deleteMovieList') }}>Usuń film</a></li>
+                </ul>
+            </div>
+            <a href="{{ path('homepage') }}"> <-Return to homepage-></a>
+        </div>
+    </div>
+    {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'Test'} %}
+{% endblock %}

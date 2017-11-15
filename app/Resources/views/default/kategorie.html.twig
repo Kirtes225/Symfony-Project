@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ŚWIAT FILMÓW{% endblock %}
+
+{% block body %}
+
+    <div id="wrapper">
+        <div id="header">
+            <h1>Filmy:</h1>
+
+            <ul>
+                {% for post in posts %}
+                    <li>{{ post.title }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ path('homepage') }}">Return to homepage</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{#   {{ form_start(form, {'method':
+        'post',
+        'action': path('fos_user_registration_register'),
+        'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+<div>
+    <input type="submit" value="{{ 'registration.submit'|trans }}"/>
+</div>
+{{ form_end(form) }}#}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_start(form) }}
+<div class="form-group" id="fos_user_registration_form">
+
+    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+    {% if form_errors(form.email) %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ form_errors(form.email) }}
+        </div>
+    {% endif %}
+    <br>
+
+    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+    {% if form_errors(form.username) %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ form_errors(form.username) }}
+        </div>
+    {% endif %}
+    <br>
+
+    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+    {% if form_errors(form.plainPassword.first) %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ form_errors(form.plainPassword.first) }}
+        </div>
+    {% endif %}
+
+    <br>
+
+    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+    {% if form_errors(form.plainPassword.second) %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ form_errors(form.plainPassword.second) }}
+        </div>
+    {% endif %}
+
+    <br>
+
+    {{ form_rest(form) }}
+</div>
+
+<div>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" value="{{ 'registration.submit'|trans }}">
+</div>
