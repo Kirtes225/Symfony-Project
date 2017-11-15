@@ -2,12 +2,6 @@
 
 {% block title %}ŚF - Panel administratora{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/boostrap.min.css') }}"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    {{ parent() }}
-{% endblock %}
-
 {% block body %}
     <div id="wrapper">
         <div id="header">
@@ -22,4 +16,9 @@
         </div>
     </div>
     {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'Test'} %}
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
 {% endblock %}

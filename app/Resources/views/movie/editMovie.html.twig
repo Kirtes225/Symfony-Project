@@ -2,12 +2,6 @@
 
 {% block title %}ŚF - Panel administratora{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/boostrap.min.css') }}"/>
-
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-{% endblock %}
-
 {% block body %}
     {#<div id="wrapper">
         <div id="header">
@@ -45,4 +39,9 @@
     {% endfor %}
     {{ form(editMovie_form) }}
     <a href="{{ path('admin') }}">Powrót do: Panel administratora</a>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 {% endblock %}
