@@ -30,14 +30,14 @@ class Vote extends BaseVote implements SignedVoteInterface
      * Comment of this vote
      *
      * @var Comment
-     * @ORM\ManyToOne(targetEntity=AppBundle\Entity\Comment")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Comment")
      */
     protected $comment;
 
     /**
      * Author of the vote
      *
-     * @ORM\ManyToOne(targetEntity="MyProject\MyBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @var User
      */
     protected $voter;
