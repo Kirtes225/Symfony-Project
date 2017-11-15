@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\CommentBundle\Entity\Comment as BaseComment;
 
+use FOS\CommentBundle\Model\RawCommentInterface;
 use FOS\CommentBundle\Model\SignedCommentInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -63,4 +64,5 @@ class Comment extends BaseComment implements SignedCommentInterface
 
         return $this->getAuthor()->getUsername();
     }
+
 }
