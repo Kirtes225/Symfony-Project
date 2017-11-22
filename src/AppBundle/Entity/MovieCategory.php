@@ -8,7 +8,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 
 /**
@@ -20,17 +22,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class MovieCategory
 {
+   /*
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
-    protected $id;
+//    protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * One Category has one Movie
+     * @ORM\Id
+     * @ORM\Column(type="string", unique=true)
      */
-    protected $category;
+    protected $category_name;
+
 
     /**
      * @return mixed
@@ -55,6 +62,4 @@ class MovieCategory
     {
         $this->category = $category;
     }
-
-
 }

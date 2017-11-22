@@ -90,8 +90,8 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/akcji", name="akcji")
-     */
+ * @Route("/akcji", name="akcji")
+ */
     public function akcjiAction(){
         $filmy = [
             'Termintor',
@@ -101,6 +101,15 @@ class DefaultController extends Controller
         ];
         return $this->render('default/kategorie.html.twig', [
             'filmy' => $filmy
+        ]);
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function testAction(){
+
+        return $this->render('default/test.html.twig', [
         ]);
     }
 }
