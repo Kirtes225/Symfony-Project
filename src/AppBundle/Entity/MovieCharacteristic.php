@@ -41,11 +41,50 @@ class MovieCharacteristic
     protected $storyline;
 
     /**
+     * @return mixed
+     */
+
+
+    /**
      * Many Movies has one Category
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\MovieCategory")
      * @JoinColumn(name="category", referencedColumnName="category_name")
      */
     protected $category;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $isNew;
+
+    /**
+     * @return mixed
+     */
+    public function getisNew()
+    {
+        return $this->isNew;
+    }
+
+    /**
+     * @param mixed $isNew
+     */
+    public function setIsNew($isNew)
+    {
+        $this->isNew = $isNew;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
 
     /**
      * @return mixed
@@ -88,7 +127,4 @@ class MovieCharacteristic
         $this->title = $title;
     }
 
-    public function __construct() {
-        $this->category = new ArrayCollection();
-    }
 }

@@ -1,0 +1,68 @@
+{% extends "base.html.twig"%}
+
+{% block title %}~~~~TEST~~~~{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href={{ asset('bundles/foscomment/css/comments.css') }}/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('bundles/kartik-v/bootstrap-star-rating/css/star-rating.css') }}"
+          media="all" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    <input id="input-id" type="text">
+    {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id': 'foo' } %}
+
+{% endblock body %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{{ asset('bundles/kartik-v/bootstrap-star-rating/js/star-rating.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/kartik-v/bootstrap-star-rating/js/locales/pl.js') }}" type="text/javascript"></script>
+    <script>
+        $("#input-id").rating({'size':'lg'});
+        $('#input-id').rating('update', Math.floor((Math.random() * 10) + 1)/2);
+
+        // method chaining
+        {#var ratingValue = $('#input-id').rating('update', 3).val();#}
+        $('#input-id').rating(('refresh'), {
+            showClear: false,
+            showCaption: true,
+            starCaptions: {
+                0.5: 'Pół Gwiazdki',
+                1: 'Jedna Gwiazdka',
+                1.5: 'Półtora Gwiazdek',
+                2: 'Dwie Gwiazdki',
+                2.5: 'Dwa i pół Gwiazdki',
+                3: 'Trzy Gwiazdki',
+                3.5: 'Trzy i pół Gwiazdki',
+                4: 'Cztery Gwiazdki',
+                4.5: 'Cztery i pół Gwiazdki',
+                5: 'Pięć Gwiazdek'
+            },
+            clearButtonTitle: 'Powrót',
+            clearCaption: 'Nie Oceniać'
+        });
+
+        // method chaining
+        var ratingValue = $('#input-id').rating('refresh', {
+            showClear: false,
+            showCaption: true,
+            starCaptions: {
+                0.5: 'Pół Gwiazdki',
+                1: 'Jedna Gwiazdka',
+                1.5: 'Półtora Gwiazdek',
+                2: 'Dwie Gwiazdki',
+                2.5: 'Dwa i pół Gwiazdki',
+                3: 'Trzy Gwiazdki',
+                3.5: 'Trzy i pół Gwiazdki',
+                4: 'Cztery Gwiazdki',
+                4.5: 'Cztery i pół Gwiazdki',
+                5: 'Pięć Gwiazdek'
+            },
+            clearButtonTitle: 'Powrót',
+            clearCaption: 'Nie Oceniać'
+        }).val();
+    </script>
+{% endblock %}

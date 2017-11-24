@@ -11,103 +11,151 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-
     public function indexAction()
     {
-        /*$kategorie = [
-            'katastroficzny',
-            'przygodowy',
-            'dokumentalny',
-            'sci-fi',
-            'akcji'
-
-        ];*/
-
         return $this->render('default/index.html.twig', [
-            //'kategorie' => $kategorie
         ]);
     }
 
     /**
-     * @Route("/katastroficzny", name="katastroficzny")
+     * @Route("/akcja", name="categoryAkcja")
      */
-    public function katastroficznyAction(){
-        $filmy = [
-            '2012',
-            'Pojutrze',
-            'Armageddon',
-            'Niemożliwe'
-        ];
-        return $this->render('default/kategorie.html.twig', [
-            'filmy' => $filmy
+    public function akcjaAction()
+    {
+        $filmGenre = "filmy akcji";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'akcja']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
         ]);
     }
 
-
     /**
-     * @Route("/przygodowy", name="przygodowy")
+     * @Route("/animowany", name="categoryAnimowany")
      */
-    public function przygodowyAction(){
-        $filmy = [
-            'Blade Runner 2049',
-            'Zwierzogród',
-            'Gwiezdne wojny: Część V - Imperium kontratakuje',
-            'Gwiezdne wojny: Część VI - Powrót Jedi'
-        ];
-        return $this->render('default/kategorie.html.twig', [
-            'filmy' => $filmy
+    public function animowanyAction()
+    {
+        $filmGenre = "filmy animowane";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'animowany']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
         ]);
     }
 
     /**
-     * @Route("/biograficzny", name="biograficzny")
+     * @Route("/biograficzny", name="categoryBiograficzny")
      */
-    public function biograficznyAction(){
-        $filmy = [
-            'Senna',
-            'Pianista',
-            'Upadek',
-            'Bogowie'
-        ];
-        return $this->render('default/kategorie.html.twig', [
-            'filmy' => $filmy
+    public function biograficznyAction()
+    {
+        $filmGenre = "filmy biograficzne";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'biograficzny']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
         ]);
     }
 
     /**
-     * @Route("/sci-fi", name="sci-fi")
+     * @Route("/katastroficzny", name="categoryKatastroficzny")
      */
-    public function SciFiAction(){
-        $filmy = [
-            'Matrix',
-            'Interstellar',
-            'Incepcja',
-            'Avatar'
-        ];
-        return $this->render('default/kategorie.html.twig', [
-            'filmy' => $filmy
+    public function katastroficznyAction()
+    {
+        $filmGenre = "filmy katastroficzne";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'katastroficzny']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
         ]);
     }
 
     /**
- * @Route("/akcji", name="akcji")
- */
-    public function akcjiAction(){
-        $filmy = [
-            'Termintor',
-            'Thor: Ragnarok',
-            'Taxi',
-            'Leon zawodowiec'
-        ];
-        return $this->render('default/kategorie.html.twig', [
-            'filmy' => $filmy
+     * @Route("/sci-fi", name="categorySci-Fi")
+     */
+    public function scifiAction()
+    {
+        $filmGenre = "filmy science-fiction";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'sci-fi']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
+        ]);
+    }
+
+    /**
+     * @Route("/thriller", name="categoryThriller")
+     */
+    public function thrillerAction()
+    {
+        $filmGenre = "thrillery";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'thriller']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
+        ]);
+    }
+
+    /**
+     * @Route("/wojenny", name="categoryWojenny")
+     */
+    public function wojennyAction()
+    {
+        $filmGenre = "filmy wojenne";
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['category' => 'wojenny']
+            );
+
+        return $this->render('movie_categories/movieCategoryList.html.twig', [
+            'movieList' => $movieList,
+            'filmGenre' => $filmGenre
+        ]);
+    }
+
+    /**
+     * @Route("/nowe", name="categoryNowe")
+     */
+    public function noweAction()
+    {
+        $movieList = $this->getDoctrine()
+            ->getRepository('AppBundle:MovieCharacteristic')
+            ->findBy(['isNew' => '1']
+            );
+
+        return $this->render('movie_categories/newMovies.html.twig', [
+            'movieList' => $movieList
         ]);
     }
 
     /**
      * @Route("/test", name="test")
      */
-    public function testAction(){
+    public function testAction()
+    {
 
         return $this->render('default/test.html.twig', [
         ]);

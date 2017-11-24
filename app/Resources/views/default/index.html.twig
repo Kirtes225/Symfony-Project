@@ -37,7 +37,11 @@
             </ul>
         </div>
 
-        <div id="banner"><img src="{{ asset('images/movies/img1.png') }}" width="1000" height="361" alt=""/></div>
+        <div id="banner">
+            <div id="slider">
+
+            </div>
+        </div>
 
         <div id="welcome">
             <h2 class="title"><a href="#">Witaj na mojej stronie</a></h2>
@@ -56,12 +60,12 @@
 
         <div id="two-columns">
             <div id="col1">
-                <h2>Klasyki</h2>
+                <h2>Nowe filmy</h2>
                 <p>Pellentesque viverra vulputate enim. Aliquam erat volutpat. Pellentesque tristique ante ut risus.
                     Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.
                     Suspendisse dictum porta lectus. Donec placerat odio vel elit. Nullam ante orci, eget, tempus quis,
                     ultrices in, est. </p>
-                <p><a href="#" class="link-style2">Więcej</a></p>
+                <p><a href="{{ path('categoryNowe') }}" class="link-style2">Więcej</a></p>
             </div>
             <div id="col2">
                 <img src="{{ asset('images/movies/img5.png') }}" alt="" width="320" height="260" class="image-style"/>
@@ -71,19 +75,19 @@
         <div id="three-columns">
 
             <div id="column1">
-                <h2>Filmy katastroficzne</h2>
+                <h2>Filmy akcji</h2>
                 <p><img src="{{ asset('images/movies/img1.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="{{ path('katastroficzny') }}" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categoryAkcja') }}" class="link-style">Więcej</a></p>
             </div>
 
             <div id="column2">
-                <h2>Filmy przygodowe</h2>
+                <h2>Filmy animowane</h2>
                 <p><img src="{{ asset('images/movies/img3.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="{{ path('przygodowy') }}" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categoryAnimowany') }}" class="link-style">Więcej</a></p>
             </div>
 
             <div id="column3">
@@ -91,7 +95,7 @@
                 <p><img src="{{ asset('images/movies/img4.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="{{ path('biograficzny') }}" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categoryBiograficzny') }}" class="link-style">Więcej</a></p>
             </div>
 
         </div>
@@ -99,27 +103,40 @@
         <div id="three-columns">
 
             <div id="column1">
-                <h2>Filmy Sci-Fi</h2>
+                <h2>Filmy katastroficzne</h2>
                 <p><img src="{{ asset('images/movies/img1.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="{{ path('sci-fi') }}" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categoryKatastroficzny') }}" class="link-style">Więcej</a></p>
             </div>
 
             <div id="column2">
-                <h2>Filmy akcji</h2>
+                <h2>Filmy sci-fi</h2>
                 <p><img src="{{ asset('images/movies/img3.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="{{ path('akcji') }}" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categorySci-Fi') }}" class="link-style">Więcej</a></p>
             </div>
 
             <div id="column3">
-                <h2>Powrót - strona główna</h2>
+                <h2>Thrillery</h2>
                 <p><img src="{{ asset('images/movies/img4.png') }}" width="300" height="120" alt=""/></p>
                 <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem. Mauris
                     quam enim, molestie.</p>
-                <p><a href="/" class="link-style">Więcej</a></p>
+                <p><a href="{{ path('categoryThriller') }}" class="link-style">Więcej</a></p>
+            </div>
+
+            <div id="three-columns">
+
+                <div id="column1">
+                    <h2>Filmy wojenne</h2>
+                    <p><img src="{{ asset('images/movies/img1.png') }}" width="300" height="120" alt=""/></p>
+                    <p>Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.
+                        Mauris
+                        quam enim, molestie.</p>
+                    <p><a href="{{ path('categoryWojenny') }}" class="link-style">Więcej</a></p>
+                </div>
+
             </div>
 
         </div>
@@ -132,4 +149,54 @@
         <p>Wszystkie prawa zastrzeżone &copy; 2017</p>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        var liczba_slajdow = 5;
+
+        var numer = Math.floor(Math.random()*liczba_slajdow)+1;
+
+        var timer1 = 0;
+        var timer2 = 0;
+
+        function ustawslajd(nrslajdu)
+        {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            numer = nrslajdu - 1;
+
+            schowaj();
+            setTimeout("zmienslajd()", 1000);
+
+        }
+
+        function schowaj()
+        {
+            $("#slider").fadeOut(1000);
+        }
+
+        function zmienslajd()
+        {
+            numer++; if (numer>liczba_slajdow) numer=1;
+
+            var plik = "<img src=\"images/movies/img" + numer + ".png\" width='1000' height='361' alt=''/>";
+
+            document.getElementById("slider").innerHTML = plik;
+            $("#slider").fadeIn(1000);
+
+            timer1 = setTimeout("zmienslajd()", 5000);
+            timer2 = setTimeout("schowaj()", 4000);
+
+        }
+
+        function nastart(){
+            zmienslajd();
+        }
+
+        window.onload =  nastart();
+
+    </script>
 {% endblock %}

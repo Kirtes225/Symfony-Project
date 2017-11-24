@@ -8,10 +8,17 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\MovieCategory;
 use AppBundle\Entity\MovieCharacteristic;
 use AppBundle\Form\MovieCharacteristicType;
+use Doctrine\DBAL\Types\BooleanType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,34 +56,25 @@ class MovieController extends Controller
      */
     public function createAction(Request $request)
     {
-        /*
-        $movie = new MovieCharacteristic();
-
-        $form = $this->createForm(MovieCharacteristicType::class, $movie);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($movie);
-            $em->flush();
-
-            $this->addFlash('success', 'Dodano do bazy danych');
-
-            return $this->redirectToRoute('admin');
-        }
-
-        return $this->render('movie/createMovie.html.twig', [
-            'createMovie_form' => $form->createView(),
-        ]);
-        */
-
-        // create a task and give it some dummy data for this example
         $movie = new MovieCharacteristic();
         $form = $this->createFormBuilder($movie)
             ->add('title', TextType::class, [
                 'label' => "Tytuł filmu",
+            ])
+            ->add('isNew', ChoiceType::class, [
+                'label' => 'Czy jest to nowy film?',
+                'choices'  => array(
+                    'Tak' => true,
+                    'Nie' => false
+                )
+            ])
+            ->add('category', EntityType::class, [
+                'label' => "Gatunek filmu",
+                'class' => MovieCategory::class,
+                'choice_label' => 'category_name',
+            ])
+            ->add('storyline', TextareaType::class, [
+                'label' => "Krótki opis filmu"
             ])
             ->add('create', SubmitType::class, [
                 'label' => "Dodaj do bazy"
@@ -101,25 +99,6 @@ class MovieController extends Controller
         ]);
     }
 
-    /*
-     * @Route("/admin/create/{text}", name="create")
-     * @param $text
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    /*
-    public function createAction($text)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $post = new MovieCharacteristic();
-        $post->setTitle($text);
-
-        $em->persist($post);
-        $em->flush();
-
-        return $this->redirectToRoute('list');
-    }*/
-
     /**
      * @Route("/admin/update", name="updateMovieList")
      */
@@ -134,7 +113,6 @@ class MovieController extends Controller
         ]);
     }
 
-
     /**
      * @Route("/admin/update/{id}", name="updateMovie")
      * @param Request $request
@@ -145,11 +123,24 @@ class MovieController extends Controller
      */
     public function updateAction(Request $request, MovieCharacteristic $movie)
     {
-        //$form = $this->createForm(MovieCharacteristicType::class, $movie);
-
         $form = $this->createFormBuilder($movie)
             ->add('title', TextType::class, [
                 'label' => "Tytuł filmu",
+            ])
+            ->add('isNew', ChoiceType::class, [
+                'label' => 'Czy jest to nowy film?',
+                'choices'  => array(
+                    'Tak' => true,
+                    'Nie' => false
+                )
+            ])
+            ->add('category', EntityType::class, [
+                'label' => "Gatunek filmu",
+                'class' => MovieCategory::class,
+                'choice_label' => 'category_name',
+            ])
+            ->add('storyline', TextareaType::class, [
+                'label' => "Krótki opis filmu"
             ])
             ->add('create', SubmitType::class, [
                 'label' => "Edytuj film [zapis do bazy]"
@@ -171,62 +162,12 @@ class MovieController extends Controller
         ]);
     }
 
-        /*
-        $em = $this->getDoctrine()->getManager();
-
-        $post = $em->getRepository('AppBundle:MovieCharacteristic')->find($id);
-
-        if (!$post) {
-            return $this->redirectToRoute('list');
-        }
-
-        /** @var $post MovieCharacteristic */
-       /*
-        $post->setTitle($text);
-
-        $em->flush();
-
-        return $this->redirectToRoute('list');
-        */
-
-
-
- /*
-         $form = $this->createFormBuilder($movie)
-             ->add('title', TextType::class, [
-                 'label' => "Tytuł filmu",
-             ])
-             ->add('create', SubmitType::class, [
-                 'label' => "Wykonaj"
-             ])
-             ->getForm();
-
-         $form->handleRequest($request);
-
-         if ($form->isSubmitted() && $form->isValid()) {
-
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($movie);
-             $em->flush();
-
-             $this->addFlash('success', 'Dodano do bazy danych');
-
-             return $this->redirectToRoute('admin');
-         }
-
-         return $this->render('movie/createMovie.html.twig', [
-             'createMovie_form' => $form->createView(),
-         ]);
-         */
-
     /**
      * @Route("/admin/delete", name="deleteMovieList")
      */
     public function deleteListAction()
     {
         $movieList = $this->getDoctrine()->getRepository('AppBundle:MovieCharacteristic')->findAll();
-
-        //dump($posts);
 
         return $this->render('movie/deleteMovieList.html.twig', [
             'movieList' => $movieList
@@ -253,4 +194,5 @@ class MovieController extends Controller
 
         return $this->redirectToRoute('deleteMovieList');
     }
+
 }

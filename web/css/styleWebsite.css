@@ -46,7 +46,7 @@ a:hover {
 
 #wrapper {
 	padding: 0;
-	background: url(images/movies/img1.png) no-repeat center top;
+	/*background: url(images/movies/img1.png) no-repeat center top;*/
 }
 
 /* Header */
@@ -297,7 +297,7 @@ a:hover {
 }
 
 #sidebar li a {
-	background: url(images/movies/img1.png) no-repeat left 6px;
+	/*background: url(images/movies/img1.png) no-repeat left 6px;*/
 }
 
 #sidebar li li span {
@@ -380,7 +380,6 @@ a:hover {
 	width: 1000px;
 	margin: 0px auto;
 	padding: 30px 0px;
-	border-bottom: 1px dashed #1d1d1d;
 	color: #ffffff;
 }
 

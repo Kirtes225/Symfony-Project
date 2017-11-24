@@ -50,16 +50,16 @@ class MovieCategory
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCategoryName()
     {
-        return $this->category;
+        return $this->category_name;
     }
 
     /**
      * @param mixed $category
      */
-    public function setCategory($category)
+    public function setCategoryName($category)
     {
-        $this->category = $category;
+        $this->category_name = $category;
     }
 }
