@@ -14,7 +14,7 @@
 
             <ul>
                 {% for movie in movieList %}
-                    <li>{{ movie.title }}</li>
+                    <li><a href="{{ path('film', {'nazwa': movie.title}) }}">{{ movie.title }}</li>
                 {% endfor %}
             </ul>
         </div>
