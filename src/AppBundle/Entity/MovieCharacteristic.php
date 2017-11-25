@@ -58,6 +58,18 @@ class MovieCharacteristic
     protected $isNew;
 
     /**
+     * MovieCharacteristic constructor.
+     * @param $title
+     * @param $storyline
+     * @param $category
+     */
+
+    /**
+     * MovieCharacteristic constructor.
+     * @param $id
+     */
+
+    /**
      * @return mixed
      */
     public function getisNew()
@@ -125,6 +137,13 @@ class MovieCharacteristic
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    public function __construct($title, $storyline, $category)
+    {
+        $this->title = $title;
+        $this->storyline = $storyline;
+        $this->category = $category;
     }
 
 }
