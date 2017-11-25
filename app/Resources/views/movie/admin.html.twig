@@ -11,6 +11,16 @@
                     <li><a href={{ path('updateMovieList') }}>Edytuj film</a></li>
                     <li><a href={{ path('deleteMovieList') }}>Usuń film</a></li>
                 </ul>
+                <br>
+                <ul>
+                    <li><a href="{{ path('fos_comment_new_threads') }}">Stwórz sekcję komentarzy do filmu</a></li>
+                </ul>
+                <br>
+                <ul>
+                    <li><a href={{ path('createCategory') }}>Dodaj nową kategorię</a></li>
+                    <li><a href={{ path('updateCategoryList') }}>Edytuj kategorię</a></li>
+                    <li><a href={{ path('deleteCategoryList') }}>Usuń kategorię</a></li>
+                </ul>
             </div>
             <a href="{{ path('homepage') }}"> <-Return to homepage-></a>
         </div>

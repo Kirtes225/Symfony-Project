@@ -62,4 +62,20 @@ class MovieCategory
     {
         $this->category_name = $category;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getcategory_name()
+    {
+        return $this->category_name;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setcategory_name($category)
+    {
+        $this->category_name = $category;
+    }
 }
