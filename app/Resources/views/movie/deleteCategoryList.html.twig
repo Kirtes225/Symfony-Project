@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ŚF - Lista filmów [Aktualizacja]{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="header">
+            <h1>Panel administratora - edycja filmów:</h1>
+
+            <ul>
+                {% for movie in movieList %}
+                    <li><a href="{{ path('deleteCategory', {'id': movie.category_name}) }}">{{ movie.category_name}}</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ path('admin') }}">Powrót do: Panel administratora</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
