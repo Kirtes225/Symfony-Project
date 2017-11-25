@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\MovieCharacteristic;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,29 @@ class DefaultController extends Controller
     public function indexAction()
     {
         return $this->render('default/index.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/film/{nazwa}", name="film")
+     * @param $nazwa
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function filmAction($nazwa)
+    {
+        $movie = $this->getDoctrine()->getRepository(MovieCharacteristic::class)->findOneBy([
+            'title' => $nazwa
+        ]);
+        $title = $movie->getTitle();
+        $genre = $movie->getCategory();
+        $storyline = $movie->getStoryline();
+
+        dump($title, $genre, $storyline);
+
+        return $this->render('default/movie.html.twig', [
+            'title' => $title,
+            'genre' => $genre,
+            'storyline' => $storyline
         ]);
     }
 
@@ -151,13 +175,4 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/test", name="test")
-     */
-    public function testAction()
-    {
-
-        return $this->render('default/test.html.twig', [
-        ]);
-    }
 }

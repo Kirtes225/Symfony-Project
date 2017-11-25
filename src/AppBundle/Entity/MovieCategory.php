@@ -38,6 +38,10 @@ class MovieCategory
      */
     protected $category_name;
 
+    /**
+     * MovieCategory constructor.
+     * @param $category_name
+     */
 
     /**
      * @return mixed
@@ -78,4 +82,16 @@ class MovieCategory
     {
         $this->category_name = $category;
     }
+
+    public function __construct($category_name)
+    {
+        $this->category_name = $category_name;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getcategory_name();
+    }
+
+
 }
